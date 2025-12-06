@@ -541,63 +541,110 @@ h1, h2, h3, h4, h5, h6 {
     margin: var(--spacing-sm) 0;
 }
 
-.skills-list {
-    list-style: none;
-    padding-left: 0;
+/* ==========================================
+   Skills & Tools Section
+   ========================================== */
+.skills-tools-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
 }
 
-.skills-list li {
-    margin-bottom: var(--spacing-sm);
-    color: rgba(255, 255, 255, 0.8);
-    padding-left: 20px;
-    position: relative;
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: var(--spacing-sm);
 }
 
-.skills-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 10px;
-    width: 6px;
-    height: 6px;
-    background: var(--color-primary);
-    border-radius: 50%;
+.tag {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(67, 97, 238, 0.15);
+    border: 1px solid rgba(67, 97, 238, 0.3);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    transition: var(--transition);
+}
+
+.tag:hover {
+    background: rgba(67, 97, 238, 0.25);
+    border-color: var(--color-primary);
+}
+
+.tag-tool {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.tag-tool:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* ==========================================
    Courses Section
    ========================================== */
+.courses-section {
+    margin-top: var(--spacing-md);
+}
+
 .courses-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-md);
 }
 
 .course-card {
     padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    transition: var(--transition);
+}
+
+.course-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(67, 97, 238, 0.3);
 }
 
 .course-card h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: var(--spacing-xs);
+    color: var(--color-white);
 }
 
 .course-provider {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    color: var(--color-primary);
     margin-bottom: var(--spacing-sm);
 }
 
 .course-card ul {
-    list-style: disc;
-    padding-left: var(--spacing-md);
+    list-style: none;
+    padding-left: 0;
 }
 
 .course-card li {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: var(--spacing-xs);
+    padding-left: 16px;
+    position: relative;
+}
+
+.course-card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    background: var(--color-primary);
+    border-radius: 50%;
 }
 
 /* ==========================================
@@ -1231,6 +1278,15 @@ h1, h2, h3, h4, h5, h6 {
 
     .tiktok-showcase {
         flex-wrap: wrap;
+    }
+
+    .skills-tools-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
     }
 
     .metrics-grid {
