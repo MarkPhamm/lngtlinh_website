@@ -667,37 +667,132 @@ h1, h2, h3, h4, h5, h6 {
 /* ==========================================
    TikTok Section
    ========================================== */
-.tiktok-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--spacing-lg);
-    align-items: center;
+.tiktok {
+    padding-bottom: var(--spacing-md);
 }
 
-.tiktok-showcase {
+.tiktok-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: var(--color-white);
+    border-radius: 24px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+}
+
+.tiktok-title-group {
+    flex: 1;
+    max-width: 550px;
+}
+
+.platform-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #000 0%, #333 100%);
+    color: var(--color-white);
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    letter-spacing: 0.3px;
+}
+
+.platform-badge svg {
+    width: 18px;
+    height: 18px;
+}
+
+.tiktok-handle {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: -1px;
+}
+
+.tiktok-tagline {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-gray);
+}
+
+.tiktok-stats {
     display: flex;
     gap: var(--spacing-md);
+}
+
+.stat-card {
+    background: linear-gradient(145deg, #f8f9fa 0%, #fff 100%);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-width: 140px;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(67, 97, 238, 0.15);
+    border-color: rgba(67, 97, 238, 0.2);
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 6px;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.tiktok-showcase-centered {
+    display: flex;
     justify-content: center;
+    align-items: flex-end;
+    gap: var(--spacing-md);
 }
 
 .phone-mockup {
-    width: 200px;
-    height: 400px;
+    width: 280px;
+    height: 580px;
     background: var(--color-dark);
-    border-radius: 30px;
-    padding: 10px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 36px;
+    padding: 12px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+}
+
+.phone-mockup.phone-featured {
+    width: 300px;
+    height: 620px;
+    transform: translateY(-20px);
+}
+
+.phone-mockup:hover {
+    transform: translateY(-10px);
+}
+
+.phone-mockup.phone-featured:hover {
+    transform: translateY(-30px);
 }
 
 .phone-mockup img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 20px;
-}
-
-.phone-mockup .image-placeholder {
-    height: 100%;
     border-radius: 20px;
 }
 
@@ -1276,8 +1371,44 @@ h1, h2, h3, h4, h5, h6 {
         grid-template-columns: 1fr;
     }
 
-    .tiktok-showcase {
+    .tiktok-header {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+
+    .tiktok-title-group {
+        max-width: 100%;
+    }
+
+    .tiktok-handle {
+        font-size: 2.5rem;
+    }
+
+    .tiktok-stats {
+        justify-content: center;
         flex-wrap: wrap;
+    }
+
+    .stat-card {
+        min-width: 110px;
+        padding: var(--spacing-md);
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .tiktok-showcase-centered {
+        flex-wrap: wrap;
+    }
+
+    .phone-mockup.phone-featured {
+        transform: none;
+    }
+
+    .phone-mockup.phone-featured:hover {
+        transform: translateY(-10px);
     }
 
     .skills-tools-grid {
@@ -1341,6 +1472,16 @@ h1, h2, h3, h4, h5, h6 {
     :root {
         --spacing-lg: 3rem;
         --spacing-xl: 4rem;
+    }
+
+    .phone-mockup {
+        width: 180px;
+        height: 380px;
+    }
+
+    .phone-mockup.phone-featured {
+        width: 200px;
+        height: 420px;
     }
 
     .nav-menu {
