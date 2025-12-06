@@ -22,7 +22,9 @@
     --border-radius: 8px;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -65,7 +67,12 @@ ul {
 /* ==========================================
    Typography
    ========================================== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 600;
     line-height: 1.2;
 }
@@ -278,9 +285,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 90%;
     transform: translate(-50%, -50%);
     background: var(--color-dark);
-    clip-path: polygon(
-        50% 0%, 55% 35%, 85% 15%, 65% 45%, 100% 50%, 65% 55%, 85% 85%, 55% 65%, 50% 100%, 45% 65%, 15% 85%, 35% 55%, 0% 50%, 35% 45%, 15% 15%, 45% 35%
-    );
+    clip-path: polygon(50% 0%, 55% 35%, 85% 15%, 65% 45%, 100% 50%, 65% 55%, 85% 85%, 55% 65%, 50% 100%, 45% 65%, 15% 85%, 35% 55%, 0% 50%, 35% 45%, 15% 15%, 45% 35%);
 }
 
 .graphic-flower {
@@ -316,11 +321,9 @@ h1, h2, h3, h4, h5, h6 {
     left: 50%;
     width: 200%;
     height: 200%;
-    background: repeating-conic-gradient(
-        from 0deg,
-        var(--color-white) 0deg 6deg,
-        var(--color-dark) 6deg 12deg
-    );
+    background: repeating-conic-gradient(from 0deg,
+            var(--color-white) 0deg 6deg,
+            var(--color-dark) 6deg 12deg);
     transform: translate(-50%, -50%);
 }
 
@@ -340,8 +343,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes rotate {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 /* ==========================================
@@ -419,10 +427,10 @@ h1, h2, h3, h4, h5, h6 {
 .image-frame::before {
     content: '';
     position: absolute;
+    left: -15px;
     top: -15px;
-    right: -15px;
-    width: 100%;
-    height: 100%;
+    width: calc(100% + 30px);
+    height: calc(100% + 30px);
     border: 2px solid var(--color-primary);
     border-radius: var(--border-radius);
     z-index: 0;
@@ -911,7 +919,47 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gallery-2x2 {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    gap: var(--spacing-sm);
+}
+
+.gallery-2x2 .gallery-item {
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+.gallery-2x2 .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    image-orientation: from-image;
+}
+
+.gallery-grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.gallery-grid-3col .gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.gallery-grid-2col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+}
+
+.gallery-grid-2col .gallery-item img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
 }
 
 .gallery-item {
@@ -1116,6 +1164,28 @@ h1, h2, h3, h4, h5, h6 {
 /* ==========================================
    Engagement Section
    ========================================== */
+.engagement {
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-lg);
+}
+
+.engagement-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.engagement-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.engagement-subtitle {
+    font-size: 1rem;
+    color: var(--color-gray);
+}
+
 .engagement-gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1123,10 +1193,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post-card {
+    position: relative;
     background: var(--color-white);
-    border-radius: var(--border-radius);
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+}
+
+.post-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 .post-card img {
@@ -1135,30 +1212,86 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
-.post-card .image-placeholder {
-    aspect-ratio: 4/5;
-    border-radius: 0;
+.post-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--spacing-md);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+    opacity: 0;
+    transition: var(--transition);
 }
 
-.post-stats {
-    padding: var(--spacing-sm);
-    display: flex;
-    gap: var(--spacing-sm);
-    font-size: 0.85rem;
+.post-card:hover .post-overlay {
+    opacity: 1;
+}
+
+.post-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.post-stat svg {
+    fill: #ff4757;
 }
 
 /* ==========================================
    Photography Sections
    ========================================== */
-.photography-header {
-    padding: var(--spacing-xl) 0;
+.photography-section {
+    padding-top: var(--spacing-lg);
 }
 
 .photography-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
     gap: var(--spacing-lg);
-    align-items: start;
+    align-items: stretch;
+}
+
+.photography-content>.gallery-grid {
+    padding: var(--spacing-md);
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.05);
+    background: var(--color-white);
+}
+
+.photo-header {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--color-white);
+    border-radius: 24px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+}
+
+.photo-title-group {
+    max-width: 700px;
+}
+
+.platform-badge-photo {
+    background: linear-gradient(135deg, #2d2d2d 0%, #4a4a4a 100%);
+}
+
+.photo-main-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.photo-tagline {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-gray);
+}
+
+.photography-header {
+    padding: var(--spacing-xl) 0;
 }
 
 .photography-content.reverse {
@@ -1172,6 +1305,11 @@ h1, h2, h3, h4, h5, h6 {
 .photography-info {
     position: sticky;
     top: 100px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: var(--spacing-lg);
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+    min-height: 100%;
 }
 
 .photography-info h3 {
@@ -1186,6 +1324,10 @@ h1, h2, h3, h4, h5, h6 {
 .photography-info p {
     line-height: 1.8;
     color: var(--color-gray);
+}
+
+.event-photography-more {
+    padding-top: 0;
 }
 
 /* ==========================================
@@ -1311,11 +1453,9 @@ h1, h2, h3, h4, h5, h6 {
     left: 50%;
     width: 200%;
     height: 200%;
-    background: repeating-conic-gradient(
-        from 0deg,
-        var(--color-primary) 0deg 6deg,
-        var(--color-white) 6deg 12deg
-    );
+    background: repeating-conic-gradient(from 0deg,
+            var(--color-primary) 0deg 6deg,
+            var(--color-white) 6deg 12deg);
     transform: translate(-50%, -50%);
 }
 
@@ -1542,6 +1682,15 @@ h1, h2, h3, h4, h5, h6 {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .photo-header {
+        padding: var(--spacing-md);
+        text-align: center;
+    }
+
+    .photo-main-title {
+        font-size: 2rem;
+    }
+
     .photography-content,
     .photography-content.reverse {
         grid-template-columns: 1fr;
@@ -1554,6 +1703,9 @@ h1, h2, h3, h4, h5, h6 {
     .photography-info {
         position: static;
         margin-bottom: var(--spacing-md);
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
     }
 
     .video-gallery {
@@ -1630,6 +1782,14 @@ h1, h2, h3, h4, h5, h6 {
 
     .gallery-3x3 {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid-3col {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid-2col {
+        grid-template-columns: 1fr;
     }
 
     .gallery-row {
